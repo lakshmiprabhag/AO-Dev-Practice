@@ -1,0 +1,32 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "factinternetsales",
+  "queryGroups": [],
+  "documentLocale": "en-GB",
+  "queriesMetadata": {
+    "FactInternetSales": {
+      "queryId": "ba812477-5b21-422d-89fe-7f29c8e3c9e5",
+      "queryName": "FactInternetSales",
+      "loadEnabled": false
+    },
+    "FactInternetSales_DataDestination": {
+      "queryId": "4261e583-d125-4b6e-8a44-f5b509de7afc",
+      "queryName": "FactInternetSales_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "https://talentship365-my.sharepoint.com/personal/lakshmi_prabha_talentship_io/",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"fdc576ff-1fce-4ade-8a10-5107a1fc8b13\",\"DatasourceId\":\"38823c82-7a45-4373-979e-88be89be0a33\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"fdc576ff-1fce-4ade-8a10-5107a1fc8b13\",\"DatasourceId\":\"d8a28540-f564-4aca-aa50-3cd1c53d9652\"}"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "Dimcustomer",
+        "type": "RefreshDataflow",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "dataflowId": "39556462-e43e-4bbe-9a86-a79bf020aa89",
+          "workspaceId": "63f70da2-ae03-49e1-9d3e-f7e0d1980727",
+          "notifyOption": "NoNotification",
+          "dataflowType": "Dataflow-Gen2"
+        }
+      },
+      {
+        "name": "salesterritory",
+        "type": "RefreshDataflow",
+        "dependsOn": [
+          {
+            "activity": "Dimcustomer",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "dataflowId": "1767555b-b7a3-48f0-9771-d553c309db08",
+          "workspaceId": "63f70da2-ae03-49e1-9d3e-f7e0d1980727",
+          "notifyOption": "NoNotification",
+          "dataflowType": "Dataflow-Gen2"
+        }
+      }
+    ]
+  }
+}
