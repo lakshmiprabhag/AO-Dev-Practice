@@ -1,0 +1,15 @@
+from pyspark.sql import SparkSession
+
+# Read both tables
+fact_df = spark.sql("SELECT Event_ID__c, Event_Status__c, Event_Start_Date__c FROM fact_event_c")
+dim_df = spark.sql("SELECT Event_ID__c, Event_Display_Name__c, Country__c, City__c, Event_Owner_Name__c, Event_Specialist__c FROM Dev_AO_Lakehouse.dim_event_c")
+
+# Join and select required columns
+event_details_df = fact_df.join(dim_df, "Event_ID__c").select(
+    "Event_ID__c", "Event_Display_Name__c", "Event_Start_Date__c",
+    "Event_Status__c", "Country__c", "City__c",
+    "Event_Owner_Name__c", "Event_Specialist__c"
+)
+
+# Write to Delta table
+event_details_df.write.mode("overwrite").option("overwriteSchema", "true").format("delta").saveAsTable("Event_Details")
