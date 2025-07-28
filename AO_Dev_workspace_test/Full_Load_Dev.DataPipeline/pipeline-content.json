@@ -1,0 +1,404 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "SalesforceSource",
+            "includeDeletedObjects": false,
+            "datasetSettings": {
+              "type": "SalesforceObject",
+              "typeProperties": {
+                "objectApiName": "custom_event_object_with_ids__c"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "489c6869-f664-488e-abc3-55fc1123a0b4"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "LakehouseTableSink",
+            "tableActionOption": "OverwriteSchema",
+            "partitionOption": "None",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "table": "custom_event_object_with_ids__c"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "Dev_AO_Lakehouse",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "39faeaa5-8771-83d0-4221-90082e6163e9",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "Id",
+                  "type": "String",
+                  "physicalType": "id"
+                },
+                "sink": {
+                  "name": "Id",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "OwnerId",
+                  "type": "String",
+                  "physicalType": "reference"
+                },
+                "sink": {
+                  "name": "OwnerId",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "IsDeleted",
+                  "type": "Boolean",
+                  "physicalType": "boolean"
+                },
+                "sink": {
+                  "name": "IsDeleted",
+                  "physicalType": "boolean"
+                }
+              },
+              {
+                "source": {
+                  "name": "Name",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "Name",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "CreatedDate",
+                  "type": "DateTime",
+                  "physicalType": "datetime"
+                },
+                "sink": {
+                  "name": "CreatedDate",
+                  "physicalType": "timestamp"
+                }
+              },
+              {
+                "source": {
+                  "name": "CreatedById",
+                  "type": "String",
+                  "physicalType": "reference"
+                },
+                "sink": {
+                  "name": "CreatedById",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "LastModifiedDate",
+                  "type": "DateTime",
+                  "physicalType": "datetime"
+                },
+                "sink": {
+                  "name": "LastModifiedDate",
+                  "physicalType": "timestamp"
+                }
+              },
+              {
+                "source": {
+                  "name": "LastModifiedById",
+                  "type": "String",
+                  "physicalType": "reference"
+                },
+                "sink": {
+                  "name": "LastModifiedById",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "SystemModstamp",
+                  "type": "DateTime",
+                  "physicalType": "datetime"
+                },
+                "sink": {
+                  "name": "SystemModstamp",
+                  "physicalType": "timestamp"
+                }
+              },
+              {
+                "source": {
+                  "name": "LastActivityDate",
+                  "type": "DateTime",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "LastActivityDate",
+                  "physicalType": "timestamp"
+                }
+              },
+              {
+                "source": {
+                  "name": "LastViewedDate",
+                  "type": "DateTime",
+                  "physicalType": "datetime"
+                },
+                "sink": {
+                  "name": "LastViewedDate",
+                  "physicalType": "timestamp"
+                }
+              },
+              {
+                "source": {
+                  "name": "LastReferencedDate",
+                  "type": "DateTime",
+                  "physicalType": "datetime"
+                },
+                "sink": {
+                  "name": "LastReferencedDate",
+                  "physicalType": "timestamp"
+                }
+              },
+              {
+                "source": {
+                  "name": "Event_Specialist__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "Event_Specialist__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "Event_End_Date__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "Event_End_Date__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "OwnerId__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "OwnerId__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "CreatedById__c",
+                  "type": "String",
+                  "physicalType": "textarea"
+                },
+                "sink": {
+                  "name": "CreatedById__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "LastModifiedById__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "LastModifiedById__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "Event_ID__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "Event_ID__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "Event_Status__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "Event_Status__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "Event_Owner_Name__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "Event_Owner_Name__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "Event_Start_Date__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "Event_Start_Date__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "Event_Display_Name__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "Event_Display_Name__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "City__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "City__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "Country__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "Country__c",
+                  "physicalType": "string"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Copy_wc3",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "3cb5601e-fcc9-8447-4ae5-fbbb4e03a66a",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "7.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Fact_dimesion_full_load",
+        "dependsOn": [
+          {
+            "activity": "Copy_wc3",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "79e4b12f-9792-be3d-48e6-2c17f1552dc3",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "7.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Event_Details",
+        "dependsOn": [
+          {
+            "activity": "Fact_dimesion_full_load",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "19a2d59d-ce61-a90b-47d9-9cc42c420dca",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "My_Events_next4_months",
+        "dependsOn": [
+          {
+            "activity": "Fact_dimesion_full_load",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
