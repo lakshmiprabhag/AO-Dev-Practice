@@ -10,7 +10,7 @@
             "datasetSettings": {
               "type": "SalesforceObject",
               "typeProperties": {
-                "objectApiName": "custom_event_object_with_ids__c"
+                "objectApiName": "custom_event_object_with_dates__c"
               },
               "schema": [],
               "externalReferences": {

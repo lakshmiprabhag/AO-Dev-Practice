@@ -75,15 +75,3 @@ display (df2)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
-
-# CELL ********************
-
-df = spark.sql("SELECT * FROM Dev_AO_Lakehouse.custom_event_object_with_ids__c LIMIT 1000")
-display(df)
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
