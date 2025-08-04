@@ -44,7 +44,7 @@
           "source": {
             "type": "SalesforceSource",
             "query": {
-              "value": "\nselect SELECT Id, Name, Event_Display_Name__c, Event_End_Date__c, Event_ID__c,  Event_Start_Date__c, Event_Status__c, City__c, Country__c, createdDate, LastViewedDate__c,LastModifiedDate__c,CreatedById__c,CreatedById,Event_Owner_Name__c,Event_Specialist__c,LastModifiedById,\nLastModifiedById__c,OwnerId,OwnerId__c FROM custom_event_object_with_dates__c  where createdDate >'@{activity('LookupOldWatermarkActivity').output.firstRow.watermarkvalue}' and createdDate <='@{activity('LookupNewWaterMarkActivity').output.firstRow}'\n",
+              "value": "@concat(\n'SELECT Id, Name, Event_Display_Name__c, Event_End_Date__c, ','Event_ID__c,  Event_Start_Date__c, Event_Status__c, ','City__c, Country__c, createdDate, LastViewedDate__c, ','LastModifiedDate__c,CreatedById__c,CreatedById, ','Event_Owner_Name__c,Event_Specialist__c,LastModifiedById, ',\n'LastModifiedById__c,OwnerId,OwnerId__c ',\n'FROM custom_event_object_with_dates__c ',\n'where createdDate > ', formatDateTime(activity('LookupOldWatermarkActivity').output.firstRow.watermarkvalue, 'yyyy-MM-ddTHH:mm:ssZ'),\n' and createdDate <= ',formatDateTime(activity('LookupNewWaterMarkActivity').output.firstRow.NewwaterMarkdate,'yyyy-MM-ddTHH:mm:ssZ')\n)\n\n",
               "type": "Expression"
             },
             "includeDeletedObjects": false,
@@ -134,7 +134,7 @@
             "type": "SalesforceObject",
             "schema": [],
             "externalReferences": {
-              "connection": "419cc717-166c-4d74-9715-12787c5c660c"
+              "connection": "489c6869-f664-488e-abc3-55fc1123a0b4"
             },
             "annotations": []
           }
@@ -148,6 +148,29 @@
         },
         "name": "LookupNewWaterMarkActivity",
         "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "a8448063-2983-8def-4e0c-951ee55ae026",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Notebook1",
+        "dependsOn": [
+          {
+            "activity": "Copy data1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
       }
     ]
   }
