@@ -1,0 +1,28 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "0d75ea2d-33bc-46b0-91b0-898a1ceb64d9",
+        "clusterUri": "",
+        "type": "Fabric",
+        "databaseItemId": "0f78c5a3-8773-9c25-474d-ccf5ff4b72e7",
+        "databaseItemName": "KQLEventhouse"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "25fe25a1-b6cf-46e6-a6a0-036262bcbb0d",
+        "content": "//***********************************************************************************************************\n// Here are two articles to help you get started with KQL:\nAutomotive\n| distinct  dropoffBoro=dropoff_boroname\n| sort by dropoffBoro asc \n\nAutomotive\n| limit 1000\n| project dropoff_boroname,dropoff_ntaname,pickup_ntaname,pickup_boroname,trip_distance,fare_amount,total_amount\n|order by dropoff_boroname asc,pickup_boroname asc,dropoff_ntaname asc,pickup_ntaname asc\n\n\n.drop column Automotive.pickup\n\nAutomotive\n| project-rename dropoff=dropoff_boroname , pickup=pickup_boroname\n\n\nAutomotive\n| project-rename amount=total_amount, distance=trip_distance\n| where dropoff ==\"Bronx\"\n| sort by amount asc ,distance asc\n\nAutomotive\n| limit 10000\n| project-rename amount=total_amount, distance=trip_distance\n| where dropoff startswith \"Bron\"\n| sort by amount asc ,distance asc\n\nAutomotive\n| project-rename amount=total_amount, distance=trip_distance\n| where dropoff in ('Bronx', 'Manhattan')\n| sort by amount asc ,distance asc\n\n\nAutomotive\n| limit 1000\n| project pickup_boroname, pickup_ntaname, dropoff_boroname, dropoff_ntaname\n| extend pickup = strcat_delim(\": \",pickup_boroname,pickup_ntaname)\n| extend dropoff= strcat_delim(\": \",dropoff_boroname,dropoff_ntaname)\n| extend eastIndex= indexof(pickup, \"East\")\n| extend pickupBefore= (pickup,0,\"East\")\n| where pickup contains \"East\"\n| order by pickup_boroname asc, pickup_ntaname asc, dropoff_boroname asc, dropoff_ntaname asc\n\n\nAutomotive\n| limit 10000\n| project total_amount, dropoff_longitude = todouble(dropoff_longitude), pickup_longitude = todouble(pickup_longitude), pickup_datetime, dropoff_datetime\n| extend amount= round(total_amount,0)\n|extend distance= (dropoff_longitude - pickup_longitude)\n|extend duration= (dropoff_datetime-pickup_datetime)\n|extend direction = sign(distance)\n|extend pickup= startofday(pickup_datetime)\n|extend pickupDay= dayofweek(pickup)\n|summarize  totalamount=sum(amount), totaldistance=sum(distance), totalduration=sum(duration) by pickup,pickupDay\n\n\nAutomotive\n| project pickup_datetime, pickup_longitude, pickup_latitude, total_amount\n| where pickup_datetime between (todatetime('2014-05-01') .. todatetime('2014-05-07 23:59:59'))\n|union kind = outer \n(Automotive\n| project pickup_datetime, dropoff_longitude, pickup_latitude, total_amount\n| where  pickup_datetime between (todatetime('2014-06-01') .. todatetime('2014-06-07 23:59:59')))\n\nAutomotive\n| extend pickupDate = startofday(pickup_datetime)\n| summarize amount = sum(total_amount) by pickup_datetime, pickupDate\n| where pickup_datetime between (todatetime('2014-05-01') .. todatetime('2014-05-07')))\n|join\n(Automotive\n| extend pickupDate = startofday(pickup_datetime)\n| summarize amountDaily = sum(total_amount) by pickupDate)\n|on pickupDate \n\nAutomotive\n| distinct pickup = startofday(pickup_datetime), pickupWeekday = dayofweek(pickup_datetime)/1d\n| order by pickup asc\n\n\n\nlimit\ntake\ntop\nrange by\nproject\nproject-rename\ndistinct \norder by \nsort by\nwhere ==\nwhere !=\nwhere =~\n and \n or \n in\n not in \n !in\n in~\n has\n contains\n hasprefix\n has_cs\n startswith\n not hasprefix\n has_any\n has_all\n summarize ..by columns \n summarize count()\n summarize countif(condition)\n min\n minif\n max\n maxif\n avg\n dcount--> remove duplicates\n count_distinct\n strcat\n strcat_delim\n strlen()\n substring\n split()\n reverse\n strrp\n\n\n\n\n",
+        "title": "Tab",
+        "dataSourceId": "0d75ea2d-33bc-46b0-91b0-898a1ceb64d9"
+      },
+      {
+        "id": "e873ff92-a714-496c-87bc-34b994ec9a52",
+        "content": "StockMarket_stream\n| limit 100",
+        "title": "",
+        "dataSourceId": "0d75ea2d-33bc-46b0-91b0-898a1ceb64d9"
+      }
+    ]
+  }
+}
