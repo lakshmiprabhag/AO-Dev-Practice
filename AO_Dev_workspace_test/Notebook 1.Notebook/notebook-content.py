@@ -22,7 +22,34 @@
 
 # CELL ********************
 
-df=spark.sql("select * from Fac
+# Welcome to your new notebook
+# Type here in the cell editor to add code!
+from pyspark.sql import SparkSession 
+tables = ["custom_event_object_with_ids__c"]
+
+for table_name in tables:
+    # 1. Get max LastModifiedDate from the table
+    df = spark.sql(f"SELECT MAX(CreatedDate) AS CreatedDate FROM {table_name}")
+    max_lm_date = df.collect()[0]["CreatedDate"]
+    
+    if max_lm_date is None:
+        print(f"[WARN] No data found in table '{table_name}', skipping watermark update.")
+        continue
+
+    formatted_date = max_lm_date.isoformat()
+
+    # 2. Update watermark_tracker using MERGE to handle both first-time and incremental
+    spark.sql(f"""
+        MERGE INTO watermarktable AS target
+        USING (SELECT '{table_name}' AS TableName, TIMESTAMP('{formatted_date}') AS watermarkvalue) AS source
+        ON target.TableName = source.TableName
+        WHEN MATCHED THEN
+          UPDATE SET target.watermarkvalue = source.watermarkvalue
+        WHEN NOT MATCHED THEN
+          INSERT (TableName, watermarkvalue) VALUES (source.TableName, source.watermarkvalue)
+    """)
+    
+    print(f"[INFO] Watermark updated for {table_name} to {formatted_date}")
 
 
 # METADATA ********************

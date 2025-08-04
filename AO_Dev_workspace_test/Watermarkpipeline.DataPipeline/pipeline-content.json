@@ -39,34 +39,19 @@
         "dependsOn": []
       },
       {
-        "type": "TridentNotebook",
-        "typeProperties": {
-          "notebookId": "fc5fc0b9-a1ee-b2fa-4efe-ee0f0e920cd3",
-          "workspaceId": "00000000-0000-0000-0000-000000000000"
-        },
-        "policy": {
-          "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureInput": false,
-          "secureOutput": false
-        },
-        "name": "Notebook1",
-        "dependsOn": []
-      },
-      {
         "type": "Copy",
         "typeProperties": {
           "source": {
             "type": "SalesforceSource",
+            "query": {
+              "value": "\nselect SELECT Id, Name, Event_Display_Name__c, Event_End_Date__c, Event_ID__c,  Event_Start_Date__c, Event_Status__c, City__c, Country__c, createdDate, LastViewedDate__c,LastModifiedDate__c,CreatedById__c,CreatedById,Event_Owner_Name__c,Event_Specialist__c,LastModifiedById,\nLastModifiedById__c,OwnerId,OwnerId__c FROM custom_event_object_with_dates__c  where createdDate >'@{activity('LookupOldWatermarkActivity').output.firstRow.watermarkvalue}' and createdDate <='@{activity('LookupNewWaterMarkActivity').output.firstRow}'\n",
+              "type": "Expression"
+            },
             "includeDeletedObjects": false,
             "datasetSettings": {
               "type": "SalesforceObject",
               "typeProperties": {
-                "objectApiName": {
-                  "value": "LastModifiedDate > @{activity('LookupOldWatermarkActivity').output.firstRow}\nAND LastModifiedDate <= @{activity('Notebook1').output.result}\n\n",
-                  "type": "Expression"
-                }
+                "objectApiName": "custom_event_object_with_ids__c"
               },
               "schema": [],
               "externalReferences": {
@@ -130,12 +115,39 @@
             ]
           },
           {
-            "activity": "Notebook1",
+            "activity": "LookupNewWaterMarkActivity",
             "dependencyConditions": [
               "Succeeded"
             ]
           }
         ]
+      },
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "SalesforceSource",
+            "query": "select max(createdDate) NewwaterMarkdate from\ncustom_event_object_with_dates__c",
+            "includeDeletedObjects": false
+          },
+          "datasetSettings": {
+            "type": "SalesforceObject",
+            "schema": [],
+            "externalReferences": {
+              "connection": "419cc717-166c-4d74-9715-12787c5c660c"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "LookupNewWaterMarkActivity",
+        "dependsOn": []
       }
     ]
   }
