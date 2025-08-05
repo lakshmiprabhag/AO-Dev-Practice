@@ -30,7 +30,7 @@ tables = ["custom_event_object_with_ids__c"]
 for table_name in tables:
     # 1. Get max LastModifiedDate from the table
     df = spark.sql(f"SELECT MAX(LastModifiedDate) AS LastModifiedDate FROM {table_name}")
-    max_lm_date = df.collect()[0]["CreatedDate"]
+    max_lm_date = df.collect()[0]["LastModifiedDate"]
     
     if max_lm_date is None:
         print(f"[WARN] No data found in table '{table_name}', skipping watermark update.")

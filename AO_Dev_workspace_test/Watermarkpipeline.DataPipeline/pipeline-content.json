@@ -44,7 +44,7 @@
           "source": {
             "type": "SalesforceSource",
             "query": {
-              "value": "@concat(\n'SELECT Id, Name, Event_Display_Name__c, Event_End_Date__c, ','Event_ID__c,  Event_Start_Date__c, Event_Status__c, ','City__c, Country__c, createdDate, LastViewedDate__c, ','LastModifiedDate__c,CreatedById__c,CreatedById, ','Event_Owner_Name__c,Event_Specialist__c,LastModifiedById, ',\n'LastModifiedById__c,OwnerId,OwnerId__c ',\n'FROM custom_event_object_with_dates__c ',\n'where LastModifiedDate__c > ', formatDateTime(activity('LookupOldWatermarkActivity').output.firstRow.watermarkvalue, 'yyyy-MM-ddTHH:mm:ssZ'),\n' and LastModifiedDate__c <= ',formatDateTime(activity('LookupNewWaterMarkActivity').output.firstRow.NewwaterMarkdate,'yyyy-MM-ddTHH:mm:ssZ')\n)\n\n",
+              "value": "@concat(\n'SELECT Id, Name, Event_Display_Name__c, Event_End_Date__c, ','Event_ID__c,  Event_Start_Date__c, Event_Status__c, ','City__c, Country__c, createdDate, LastViewedDate__c, ','LastModifiedDate__c,CreatedById__c,CreatedById, ','Event_Owner_Name__c,Event_Specialist__c,LastModifiedById, ',\n'LastModifiedById__c,OwnerId,OwnerId__c ',\n'FROM custom_event_object_with_dates__c ',\n'where LastModifiedDate__c > ''', \nformatDateTime(activity('LookupOldWatermarkActivity').output.firstRow.watermarkvalue, 'yyyy-MM-ddTHH:mm:ssZ'),\n''' and LastModifiedDate__c <= ''',formatDateTime(activity('LookupNewWaterMarkActivity').output.firstRow.NewwaterMarkdate,'yyyy-MM-ddTHH:mm:ssZ'), ''''\n)\n\n",
               "type": "Expression"
             },
             "includeDeletedObjects": false,
