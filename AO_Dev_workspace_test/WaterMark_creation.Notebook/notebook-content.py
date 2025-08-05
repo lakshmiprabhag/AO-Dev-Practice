@@ -43,18 +43,6 @@ create TABLE watermarktable(
 
 # CELL ********************
 
-df = spark.sql("SELECT * FROM Dev_AO_Lakehouse.watermarktable LIMIT 1000")
-display(df)
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import to_timestamp
 
