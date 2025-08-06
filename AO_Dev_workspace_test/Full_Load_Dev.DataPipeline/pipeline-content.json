@@ -115,17 +115,6 @@
               },
               {
                 "source": {
-                  "name": "LastModifiedDate",
-                  "type": "DateTime",
-                  "physicalType": "datetime"
-                },
-                "sink": {
-                  "name": "LastModifiedDate",
-                  "physicalType": "timestamp"
-                }
-              },
-              {
-                "source": {
                   "name": "LastModifiedById",
                   "type": "String",
                   "physicalType": "reference"
@@ -181,6 +170,116 @@
               },
               {
                 "source": {
+                  "name": "LastModifiedById__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "LastModifiedById__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "CreatedById__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "CreatedById__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "OwnerId__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "OwnerId__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "Event_Status__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "Event_Status__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "Country__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "Country__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "City__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "City__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "Event_Owner_Name__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "Event_Owner_Name__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "LastModifiedDate__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "LastModifiedDate__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "Event_ID__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "Event_ID__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "Event_Display_Name__c",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "Event_Display_Name__c",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
                   "name": "Event_Specialist__c",
                   "type": "String",
                   "physicalType": "string"
@@ -203,72 +302,6 @@
               },
               {
                 "source": {
-                  "name": "OwnerId__c",
-                  "type": "String",
-                  "physicalType": "string"
-                },
-                "sink": {
-                  "name": "OwnerId__c",
-                  "physicalType": "string"
-                }
-              },
-              {
-                "source": {
-                  "name": "CreatedById__c",
-                  "type": "String",
-                  "physicalType": "textarea"
-                },
-                "sink": {
-                  "name": "CreatedById__c",
-                  "physicalType": "string"
-                }
-              },
-              {
-                "source": {
-                  "name": "LastModifiedById__c",
-                  "type": "String",
-                  "physicalType": "string"
-                },
-                "sink": {
-                  "name": "LastModifiedById__c",
-                  "physicalType": "string"
-                }
-              },
-              {
-                "source": {
-                  "name": "Event_ID__c",
-                  "type": "String",
-                  "physicalType": "string"
-                },
-                "sink": {
-                  "name": "Event_ID__c",
-                  "physicalType": "string"
-                }
-              },
-              {
-                "source": {
-                  "name": "Event_Status__c",
-                  "type": "String",
-                  "physicalType": "string"
-                },
-                "sink": {
-                  "name": "Event_Status__c",
-                  "physicalType": "string"
-                }
-              },
-              {
-                "source": {
-                  "name": "Event_Owner_Name__c",
-                  "type": "String",
-                  "physicalType": "string"
-                },
-                "sink": {
-                  "name": "Event_Owner_Name__c",
-                  "physicalType": "string"
-                }
-              },
-              {
-                "source": {
                   "name": "Event_Start_Date__c",
                   "type": "String",
                   "physicalType": "string"
@@ -280,34 +313,12 @@
               },
               {
                 "source": {
-                  "name": "Event_Display_Name__c",
+                  "name": "LastViewedDate__c",
                   "type": "String",
                   "physicalType": "string"
                 },
                 "sink": {
-                  "name": "Event_Display_Name__c",
-                  "physicalType": "string"
-                }
-              },
-              {
-                "source": {
-                  "name": "City__c",
-                  "type": "String",
-                  "physicalType": "string"
-                },
-                "sink": {
-                  "name": "City__c",
-                  "physicalType": "string"
-                }
-              },
-              {
-                "source": {
-                  "name": "Country__c",
-                  "type": "String",
-                  "physicalType": "string"
-                },
-                "sink": {
-                  "name": "Country__c",
+                  "name": "LastViewedDate__c",
                   "physicalType": "string"
                 }
               }
