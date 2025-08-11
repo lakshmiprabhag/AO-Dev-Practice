@@ -1,0 +1,37 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "20e955f2-be01-a651-4df7-901e6d6a69b1",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "auth_token": {
+              "value": {
+                "value": "@pipeline().parameters.auth_token",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Notebook1",
+        "dependsOn": []
+      }
+    ],
+    "parameters": {
+      "auth_token": {
+        "type": "String",
+        "defaultValue": "652F20CAE50E29A884E0479347816E19141691866AAE08B88F87A74BD0185544-1"
+      }
+    }
+  }
+}
